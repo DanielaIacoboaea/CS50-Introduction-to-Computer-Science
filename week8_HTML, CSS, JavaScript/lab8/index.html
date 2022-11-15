@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+
+    </head>
+    <body>
+
+        <div class="jumbotron">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+
+                <!-- TODO: Add multiple choice question here -->
+                <h3>The code in <i>The Matrix</i> comes from what food recipes?</h3>
+                <button type="button" correct="true" >Sushi recipes</button>
+                <button type="button" correct="false" >Dumpling recipes</button>
+                <button type="button" correct="false" >Stir-fry recipes</button>
+                <button type="button" correct="false" >Pad thai recipes</button>
+                <p id="output-part-1"></p>
+
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+
+                <!-- TODO: Add free response question here -->
+                <h3>What is the name of the fictional land where <i>Frozen</i> takes place?</h3>
+                <input type="text" id="land" name="land" autocomplete="off">
+                <button type="button" id="text-button">Check answer</button>
+                <p id="output-part-2"></p>
+
+            </div>
+
+        </div>
+         <script>
+
+            // TODO: Add code to check answers to questions
+
+            let buttons = document.querySelectorAll("button[correct]");
+            let output_1 = document.getElementById("output-part-1");
+
+            buttons.forEach(button => {
+                button.addEventListener("click", _ => {
+                    if (output_1.innerHTML !== '')
+                    {
+                        return;
+                    }
+                    if (button.getAttribute("correct") === "true")
+                    {
+                        let false_buttons = document.querySelectorAll("button[correct='false']");
+                        false_buttons.forEach(false_button => {
+                            false_button.classList.add("incorrect");
+                        });
+                        button.classList.add("correct");
+                        output_1.innerHTML = "Correct!";
+                    } else
+                    {
+                        let true_button = document.querySelector("button[correct='true']");
+                        true_button.classList.add("correct");
+                        button.classList.add("incorrect");
+                        output_1.innerHTML = "Incorrect";
+                    }
+                });
+            });
+
+            //check text answer for part 2
+
+            let landText = document.querySelector('#land');
+            let output_2 = document.querySelector('#output-part-2');
+            let text_button = document.querySelector('#text-button');
+
+            text_button.addEventListener("click", _ => {
+                if (landText.value ==="Arendelle" || landText.value === "arendelle")
+                {
+                    landText.classList.add("correct");
+                    output_2.innerHTML = "Correct!";
+                } else {
+                    landText.classList.add("incorrect");
+                    output_2.innerHTML = "Incorrect";
+                }
+            });
+        </script>
+    </body>
+</html>
