@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ stock.symbol }}
+{% endblock %}
+
+{% block main %}
+   <h3 class="navbar-brand"><strong>Stock data for <span class="green">{{ stock.symbol }}</span></strong></h3>
+   <table class="table table-striped">
+       <thead>
+           <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+            </tr>
+       </thead>
+       <tbody>
+           <tr scope="row">
+                <td>{{ stock.symbol }}</td>
+                <td>{{ stock.name }}</td>
+                <td>{{ stock.price|usd() }}</td>
+            </tr>
+       </tbody>
+   </table>
+{% endblock %}

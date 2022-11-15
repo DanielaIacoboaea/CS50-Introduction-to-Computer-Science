@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+   <h3 class="navbar-brand blue"><strong>Overview of my portfolio</strong></h3>
+   <table class="table table-striped">
+       <thead>
+           <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col">Name</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Price</th>
+                <th scope="col">Total</th>
+            </tr>
+       </thead>
+       <tbody>
+           {% for stock in assets %}
+               {% if stock.shares > 0 %}
+                <tr scope="row">
+                    <td>{{ stock.symbol }}</td>
+                    <td>{{ stock.name }}</td>
+                    <td>{{ stock.shares }}</td>
+                    <td>{{ stock.price|usd() }}</td>
+                    <td>{{ stock.total|usd() }}</td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+            <tr scope="row">
+                <td>CASH</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{ userCash|usd() }}</td>
+            </tr>
+       </tbody>
+   </table>
+   <h5 style="text-align: right"><strong><td>{{ stocksTotalWorth|usd() }}</td></strong></h5>
+{% endblock %}
